@@ -1,0 +1,25 @@
+- hosts: all
+  connection: ssh
+  become: yes
+
+  tasks:
+    - name: Extract vipnet src from disk
+      community.general.iso_extract:
+        image: /vipnet_files/vipnet.iso
+        dest: /vipnet_files/
+        files:
+        - ViPNet Coordinator for Linux 4.х/1. Программное обеспечение/distribute-x86_64-linux-4.2.5-13502.tar.gz
+      delegate_to: localhost
+
+    - name: Copy file
+      copy:
+        src: /home/vit/vipnet_files/distribute-x86_64-linux-4.2.5-13502.tar.gz
+        dest: /usr/src/
+        checksum: 12fb818fb4181e67675951186dcb2746614f2220
+
+    - name: Extract vipnet into /usr/src/
+      unarchive:
+        src: /usr/src/distribute-x86_64-linux-4.2.5-13502.tar.gz
+        dest: /usr/src/
+        remote_src: yes
+

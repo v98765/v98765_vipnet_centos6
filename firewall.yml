@@ -1,0 +1,22 @@
+---
+- hosts: all
+  connection: ssh
+
+  tasks:
+    - name: Disable iptables
+      sysvinit:
+       name: iptables
+       state: stopped
+       enabled: no
+
+    - name: Disable ip6tables
+      sysvinit:
+       name: ip6tables
+       state: stopped
+       enabled: no
+
+    - name: unload ip_tables module
+      lineinfile:
+        path: /etc/modprobe.d/vipnet.conf
+        line: 'install ip_tables /bin/false'
+        create: yes

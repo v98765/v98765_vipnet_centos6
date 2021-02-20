@@ -1,0 +1,6 @@
+[c6]
+c6host ansible_host=192.168.0.1
+
+[c6:vars]
+ansible_python_interpreter=/usr/bin/python
+ansible_user=root

@@ -1,0 +1,6 @@
+- hosts: all
+  connection: ssh
+
+  tasks:
+    - name: Enable ip forwarding
+      sysctl: name=net.ipv4.ip_forward value=1 state=present reload=yes

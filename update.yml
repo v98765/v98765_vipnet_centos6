@@ -1,0 +1,50 @@
+---
+- hosts: all
+  connection: ssh
+
+  tasks:
+
+    - name: Copy repo
+      copy:
+        src: files/CentOS-Base.repo
+        dest: /etc/yum.repos.d
+
+    - name: clean
+      command: yum clean all
+
+    - name: Upgrade all packages
+      yum:
+        name: '*'
+        state: latest
+
+    - name: Install the 'Development tools' package group
+      yum:
+        name: "@Development tools"
+        state: present
+
+    - name: Install a list of packages with a list variable
+      yum:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+          - kernel-devel
+          - yum-utils
+          - gcc
+          - gzip
+          - make
+          - patch
+          - tar
+          - gawk
+          - bash
+          - ethtool
+          - fileutils
+          - grep
+          - logrotate
+          - net-tools
+          - psmisc
+          - sed
+          - sh-utils
+          - nc
+          - unzip
+          - ntp

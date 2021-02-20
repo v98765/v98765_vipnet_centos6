@@ -1,0 +1,10 @@
+- hosts: all
+  connection: ssh
+
+  tasks:
+
+    - name: enable ntp
+      sysvinit:
+       name: ntpd
+       state: started
+       enabled: yes
