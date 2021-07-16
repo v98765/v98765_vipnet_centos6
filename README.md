@@ -13,3 +13,4 @@
 * reboot `ansible-playbook reboot.yml`
 * ntp `ansible-playbook ntp.yml`
 * Скопировать дистрибутив координатора в `/usr/src` и распаковать там `ansible-playbook copy-vipnet.yml`.`community.general.iso_extract` в `copy-vipnet.yml` требует привилегий, поэтому запускать плей с ключем -K или от root'а. Для копирования дистрибутива нужен образ с софтовым координатором `/vipnet_files/vipnet.iso`.
+* Заменить конфиг для ротации логов `/etc/logrotate.d/vipnet.log.conf` на прилагаемый. В нем изменена ротация для файлов alg с учетом записи отладки во временный файл.
